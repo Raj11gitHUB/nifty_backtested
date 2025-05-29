@@ -19,6 +19,12 @@
             max-width: 600px;
             margin: 0 auto;
         }
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 10px;
+        }
         a.download-btn {
             display: inline-block;
             background: #ff0000; /* YouTube red */
@@ -37,12 +43,28 @@
 <body>
     <div class="container">
         <h1>📊 Download CSV Dataset</h1>
-        <p>This file accompanies my YouTube video. Click below to download!</p>
-        
-        <!-- Replace "your-file.csv" with your actual CSV file -->
-        <a href="daily_summary.csv" class="download-btn" download>Download CSV</a>
-        
-        <p><small>Hosted for free on GitHub Pages. <br> Want to build this? <a href="https://github.com/yourusername" target="_blank">See my GitHub</a>!</small></p>
+        <p>Select a file and click below to download!</p>
+
+        <!-- Dropdown to select CSV -->
+        <select id="csvSelector">
+            <option value="daily_summary.csv">Daily Summary</option>
+            <option value="monthly_report.csv">Monthly Report</option>
+        </select>
+
+        <!-- Dynamic download button -->
+        <a id="downloadLink" href="daily_summary.csv" class="download-btn" download>Download CSV</a>
+
+        <p><small>Hosted for free on GitHub Pages.<br>Want to build this? <a href="https://github.com/yourusername" target="_blank" rel="noopener noreferrer">See my GitHub</a>!</small></p>
     </div>
+
+    <script>
+        const selector = document.getElementById("csvSelector");
+        const downloadLink = document.getElementById("downloadLink");
+
+        selector.addEventListener("change", function () {
+            const selectedFile = selector.value;
+            downloadLink.href = selectedFile;
+        });
+    </script>
 </body>
 </html>
